@@ -18,40 +18,154 @@ const game = {
     { name: 'rare candy', quantity: 99 }
   ]
 }
-console.dir(pokemon, { maxArrayLength: null })
-console.log(pokemon[58].name)
-console.log(game)
-game.difficulty = 'Med'
-const addStarterToParty = (starterPokemon) => game.party.push(starterPokemon)
-addStarterToParty(pokemon[0])
-const addPokemonToParty = (pokemonArray) => game.party.push(...pokemonArray)
-addPokemonToParty([pokemon[5], pokemon[10], pokemon[15]])
-game.gyms.forEach((gym) => gym.difficulty < 3 && (gym.completed = true))
-const evolveStarter = () => game.party.splice(0, 1, pokemon[1])
-evolveStarter()
-game.party.forEach((pokemon) => console.log(pokemon.name))
-pokemon
-  .filter((pokemon) => pokemon.starter)
-  .forEach((pokemon) => console.log(pokemon.name))
 
-game.catchPokemon = (pokemonObj) => game.party.push(pokemonObj)
-game.catchPokemon(pokemon[6])
+//console.dir(pokemon, { maxArrayLength: null })
+
+//console.log(game)
+
+/*
+Solve Exercise 3 here:
+*/
+game.difficulty = 'Med'
+// console.log(game)
+
+/*
+Solve Exercise 4 here:
+*/
+let starter = pokemon[0]
+// console.log(starter)
+game.party.push(starter)
+// console.log(game.party)
+
+/*
+Solve Exercise 5 here:
+*/
+
+game.party.push(pokemon[8], pokemon[11], pokemon[79])
+
+// console.log(game.party)
+
+/*
+Solve Exercise 6 here:
+*/
+
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 3) {
+    gym.completed = true
+  }
+})
+
+// console.log(game.gyms)
+
+/*
+Solve Exercise 7 here:
+*/
+
+const number2 = pokemon.find((no2) => {
+  no2.number === 2
+})
+game.party.splice(0, 1, number2)
+// console.log(game.party)
+
+/*
+
+
+Solve Exercise 8 here:
+*/
+game.party.forEach((pokName) => {
+  // console.log(pokName.name)
+})
+
+/*
+Solve Exercise 9 here:
+*/
+
+pokemon.forEach((start) => {
+  if (start.starter === true) {
+    // console.log(start.name)
+  }
+})
+
+/*
+
+Solve Exercise 10 here:
+*/
 game.catchPokemon = (pokemonObj) => {
   game.party.push(pokemonObj)
-  game.items.find((item) => item.name === 'pokeball').quantity--
 }
-game.catchPokemon(pokemon[6])
-console.log(game.items)
-game.gyms.forEach((gym) => gym.difficulty < 6 && (gym.completed = true))
+game.catchPokemon(pokemon[28])
+// console.log(game.party)
+
+/*
+
+Solve Exercise 11 here:
+*/
+
+console.log(game.party)
+game.catchPokemon = (pokemonObj) => {
+  game.party.push(pokemonObj)
+  game.items.forEach((item) => {
+    if (item.name === 'pokeball') {
+      item.quantity -= 1
+    }
+  })
+}
+
+/*
+Solve Exercise 12 here:
+*/
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 6) {
+    gym.completed = true
+  }
+})
+
+// console.log(game.gyms)
+
+/*
+Solve Exercise 13 here:
+*/
+
 game.gymStatus = () => {
-  const gymTally = { completed: 0, incomplete: 0 }
-  game.gyms.forEach((gym) =>
-    gym.completed ? gymTally.completed++ : gymTally.incomplete++
-  )
+  const gymTally = {
+    completed: 0,
+    incomplete: 0
+  }
+  game.gyms.forEach((gym) => {
+    if (gym.completed == true) {
+      gymTally.completed += 1
+    } else {
+      gymTally.incomplete += 1
+    }
+  })
   console.log(gymTally)
 }
 game.gymStatus()
-game.partyCount = () => game.party.length
-console.log(game.partyCount())
-game.gyms.forEach((gym) => gym.difficulty < 8 && (gym.completed = true))
+
+/*
+Solve Exercise 14 here:
+*/
+
+game.partyCounter = () => {
+  return game.party.length
+}
+console.log(game.partyCounter())
+
+/*
+Solve Exercise 15 here:
+*/
+game.gyms((gym) => {
+  if (gym.difficulty < 8) {
+    gym.completed = true
+  }
+})
+console.log(game.gyms)
+
+/*
+Exercise 16
+1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+
+
+Solve Exercise 16 here:
+*/
 console.log(game)
